@@ -1,0 +1,52 @@
+File = "/configs/export/config.toml"
+
+[exp]
+  cache_db = "0"
+  cache_pass = ""
+  cache_url = "localhost:6379"
+  log_level = "debug"
+  nats = "nats://nats:4222"
+  port = "8170"
+
+[mqtt]
+  ca_path = "ca.crt"
+  client_cert = ""
+  client_cert_key = ""
+  client_cert_path = "thing.crt"
+  client_priv_key_path = "thing.key"
+  host = "tcp://192.168.123.4:1883"
+  channel = "1273e20c-76ed-4684-b244-5692ed11e61a"
+  mtls = false
+  password = "ead95104-0c6c-4f79-8226-1c6b5835d72f"
+  qos = 0
+  retain = false
+  skip_tls_ver = true
+  username = "335c95cf-1507-43b0-82a1-3042baf9ae1a"
+
+[[routes]]
+  mqtt_topic = "channels/1273e20c-76ed-4684-b244-5692ed11e61a/messages"
+  nats_topic = "export"
+  subtopic = ""
+## default means that payload sent on NATS will be just forwarded to MQTT
+  type = "default"
+## Number of the workers depends on the connection capacity
+## as well as on payload size that needs to be sent.
+## Number of workers also determines the size of the buffer
+## that recieves messages from NATS.
+## For regular telemetry SenML messages 10 workers is enough.
+  workers = 10
+
+[[routes]]
+  mqtt_topic = "channels/1273e20c-76ed-4684-b244-5692ed11e61a/messages"
+  nats_topic = "channels"
+  subtopic = ""
+## mfx means that payload sent on NATS is actually Mainflux messages
+## so first SenML payload will be extracted and then forwarded to MQTT
+  type = "mfx"
+## Number of the workers depends on the connection capacity
+## as well as on payload size that needs to be sent.
+## Number of workers also determines the size of the buffer
+## that recieves messages from NATS.
+## For regular telemetry SenML messages 10 workers is enough.
+  workers = 10
+

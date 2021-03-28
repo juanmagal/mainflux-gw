@@ -1,0 +1,35 @@
+File = "/config.toml"
+
+[Agent]
+
+  [Agent.channels]
+    control = "d22863e5-33f1-4a69-a115-efe2e93a2d15"
+    data = "57c4bd20-3695-4451-8bc1-207177b9cc79"
+
+  [Agent.edgex]
+    url = "http://localhost:48090/api/v1/"
+
+  [Agent.heartbeat]
+    interval = "0s"
+
+  [Agent.log]
+    level = "debug"
+
+  [Agent.mqtt]
+    ca_path = ""
+    cert_path = ""
+    mtls = false
+    password = "ead95104-0c6c-4f79-8226-1c6b5835d72f"
+    priv_key_path = ""
+    qos = 0
+    retain = false
+    skip_tls_ver = false
+    url = "192.168.123.4:1883"
+    username = "335c95cf-1507-43b0-82a1-3042baf9ae1a"
+
+  [Agent.server]
+    nats_url = "nats:4222"
+    port = "9000"
+
+  [Agent.terminal]
+    session_timeout = "0s"
